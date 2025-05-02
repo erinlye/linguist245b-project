@@ -1,0 +1,116 @@
+---
+title: "Replication of Intelligibility Task from Kutlu et al., The Impact of Race on Speech Perception and Accentedness Judgments in Racially Diverse and Non-Diverse Groups (2020, Applied Linguistics)"
+author: "Erin Ye - erinye@stanford.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+format:
+  html:
+    toc: true
+    toc_depth: 3
+---
+
+<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+## Introduction
+
+This study aimed to replicate the first task in Kutlu et al.'s 2020 study analyzing the impact of race on speech perception and accentedness judgment in racially diverse and non-diverse groups. Following the documented methods and using available materials from the original study, participants were recruited via Prolific to complete a one hour long experiment involving a language background questionnaire, a LexTALE language dominance task, and a social networks questionnaire prior to a speech intelligibility task. Three varieties of English (American, British, Indian) were paired in random order with either one of two Caucasian female faces or a South Asian female face. The study was motivated by the research question, how does race impact speech perception and social judgment of spoken English, and is there a difference in this impact depending on the racial diversity of one's social network?
+
+The finding of interest from the original study was that participants reported lower intelligibility ratings for all varieties when speech was paired with South Asian faces. There was an additional finding that participants who reported less racially diverse social networks had higher accentedness judgment ratings than those with more racially diverse social networks; however, given the scope of the project and the length of the experiment task, I plan to focus on the first finding. 
+
+## Methods
+
+### Power Analysis
+
+The original study found an effect size of t=10.9 with a group fo 58 participants. Based on the power analysis and the Cohen d-value of 2.913, the suggested sample size to achieve 95% power is 8 participants, which is likely due to the large reported t-value. 
+
+### Planned Sample
+
+To ensure slightly more security, and to account for the need to recruit participants were sufficiently different social network diversity levels, I will aim for closer to 15 participants for my replication experiment. The participants in the original study were all American English dominant speakers. Speakers with 10 years or more of exposure to Hindi, Indian English, and British English will need to be excluded from the sample. The average age of participants was 19.2, and they were all college aged students, so I will aim for a similar demographic.
+
+### Materials
+
+"For visual stimuli, we used two previously normed and controlled face databases. South Asian faces were taken from the KKWETC face database (Satone 2017). White faces were taken from the Chicago face database (Ma et al. 2015). Both of these face databases have been used extensively in vision research. From each database, we picked three female faces that were shown to display no emotional valence (see Appendix A). Six white and South Asian faces (3:3 ratio) were matched with three different varieties by way of a fully randomized Latin-square counterbalance distribution (e.g., one white face with American English speaker 1, one white face with British English speaker 1, one white face with Indian English speaker 1, etc.). This yielded four lists for the intelligibility experiment. Each speaker was paired with one face per list and each participant only saw one list (n=120 sentences)." This is quoted directly from the original study and the faces were available on the OSF page.
+
+For audio stimuli, the original recordings used in the Kutlu study were not available on the OSF page, but the same sentences from the HINT (Hidden Intent Coprus) lists were available via the ALLSTAR SpeechBox Corpus. I selected one Hindi L1 speaker, one American English speaker, and one British English speaker, whose recordings I then separated into sentence stimuli. "To make the task slightly challenging for the participants, and to assess whether noise impacts the intelligibility of different varieties of Englishes (Van Engen et al. 2014; Van Engen & Bradlow 2007), we added - 4 dB (signal to noise ratio) white noise to our recordings. This way, we also ensured that the task mimicked real-world scenarios where there is often background noise during speech perception and that participants paid more attention (i.e., listened to them carefully) to each stimulus. This was chosen based on previous studies (McGowan 2015) and also from the norming study."
+
+### Procedure	
+
+"Participants completed a language background questionnaire (Li et al. 2020), the LexTale
+English proficiency task (Lemhöfer & Broersma 2012), and the revised version of Lev-Ari’s
+(2017) social network questionnaire (see OSF page). They then completed the experimental
+tasks, namely the intelligibility task followed by the accentedness judgment task. All testing was
+completed in a quiet room. The experiment took 1.5 hours to complete, and participants received
+3 class credits upon completion of the experiment. The accentedness judgment and the intelligibility tasks were administered via PsychoPy (Peirce 2017). First, an image was shown on the computer screen for 250 ms. Then, the auditory stimulus played. The PsychoPy script was written in such a way that participants were not allowed to start typing nor judge the sentences in either experiment before the stimulus played
+fully. Participants were instructed regarding this information and completed a practice trial with
+the research assistant that consisted of three sentences which were excluded from the analysis. For the intelligibility task, participants were instructed to look at a speaker’s face on the
+screen, listen to the speech in noise carefully, and type the sentences as accurately as possible.
+To facilitate typing, participants were advised to avoid punctuation or capital letters."
+
+I will be following this procedure closely, with the exception that my experiment only include the intelligibility task and will be run in JsPsych, not PsychoPy. It will also be administered completely online through Prolific. Participants will be rewarded monetarily rather than through class credit. They will also be debriefed at the end of the study.
+
+### Analysis Plan
+
+"Depending on participants’ answers to the social network questionnaire, those who reported
+having more than one tie with someone in their close network (i.e., someone that they interact 
+11 with almost every day) who identifies with a racial or ethnic background outside of their own
+racial and ethnic background were grouped in the MoreDiverse category. Those with ties only to
+individuals within their own racial and ethnic background were grouped in the LessDiverse
+(LessDiverse n= 24, MoreDiverse n=34)."  
+
+"Intelligibility scores were calculated through transcription accuracy. For each sentence, content words were selected and their transcription accuracy was calculated by means of 1s for correct content words and 0s for incorrect words (Porretta et al. 2016). Typos that were close to the content words were counted as 1s (e.g., yelow instead of yellow). To investigate proportions as a function of different race, English variety, and different social network diversity, we constructed a linear mixed-effects model using the lme4 package (Bates et al. 2018) in R (R version 3.6.1; R Core Team, 2019), conducted follow-up tests with lsmeans package (Lenth 2016), and corrected pairwise comparisons with the Bonferroni correction. Proportions were entered as the continuous dependent variable. As fixed effects, we included (1) Helmert-coded Variety (American English vs. British English), and (Indian English vs American + British English), (2) treatment coded Face (South Asian (a), white (b)), (3) treatment coded Diverse (LessDiverse (a), MoreDiverse(b)). Random effects were by-subject and by-item random intercepts. Random slopes were eliminated as the model did not converge." Participants who fail to transcribe more than 50% of the sentence stimuli will be excluded from the analysis.
+
+**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+The key analysis will be a mixed-effects model measuring comparisons of transcription accuracy for South Asian faces compared to white faces. At this point I have not planned any additional analyses beyond the methods described in the study.
+
+### Differences from Original Study
+
+While the goal is to minimize differences from the original study, mine will primarily differ in that different speakers were chosen for the auditory stimuli, since the original speaker recordings were not available. Additionally, the original experiment was administered in person on a college campus, whereas my experiment will be run completely online. My sample will also likely be smaller than the original study's based on our power analysis.
+
+### Methods Addendum (Post Data Collection)
+
+You can comment this section out prior to final report with data collection.
+
+#### Actual Sample
+  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+#### Differences from pre-data collection methods plan
+  Any differences from what was described as the original plan, or “none”.
+
+
+## Results
+
+
+### Data preparation
+
+Data preparation following the analysis plan.
+	
+```{r include=F}
+### Data Preparation
+
+#### Load Relevant Libraries and Functions
+
+#### Import data
+
+#### Data exclusion / filtering
+
+#### Prepare data for analysis - create columns etc.
+```
+
+### Confirmatory analysis
+
+The analyses as specified in the analysis plan.  
+
+*Side-by-side graph with original graph is ideal here*
+
+### Exploratory analyses
+
+Any follow-up analyses desired (not required).  
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
