@@ -40,6 +40,9 @@
     // We will store each trial in a list called timeline 
     const timeline = [];
 
+    const totalTrials = 186;
+    const lex_increment = 1.0 / (totalTrials);
+
     // Experiment Intro
 
     const intro_instructions = {
@@ -49,13 +52,12 @@
         <p>Thank you for your participation in this study.</p>
         <p>Please complete all tasks to the best of your ability.</p>
         <p>You will be compensated for your time.</p>
-        <p><strong>Please be sure that you selected a list. If you did not see a popup, please refresh the page.</strong></p>
-        <p>Press the <strong>SPACEBAR</strong> to begin.</p>
+        <p>Press the <strong>SPACEBAR</strong> to begin.</p>,
     `
     };
 
     timeline.push(intro_instructions);
-    // Language Background Questionnaires
+    // Language Background Questionnaires -- hold off
     
     
     
@@ -89,6 +91,24 @@ const lex_instructions = {
 };
 
 // Trial template
+  const practice_trial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `
+        <p>This is a practice round.</p>
+        <p><div style="font-size: 32px;">cat</div></p>
+    `,
+    choices: ['f', 'j']
+  }
+
+  const thanks = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `
+        <p>Great! You should have pressed 'j'. Now the real task begins.</p>
+        <p> Press the <strong>SPACEBAR</strong> to continue.</p>
+    `,
+    choices: [' ']
+  }
+
   const lextale_trials = {
     timeline: [
         {
@@ -100,6 +120,8 @@ const lex_instructions = {
             data: jsPsych.timelineVariable('data'),
             on_finish: function(data) {
                 data.correct = data.response === data.correct_response;
+                const current_progress = jsPsych.getProgressBarCompleted();
+                jsPsych.setProgressBar(current_progress + lex_increment);
             }
         }
     ],
@@ -116,6 +138,8 @@ const lex_instructions = {
 
 
   timeline.push(lex_instructions)
+  timeline.push(practice_trial)
+  timeline.push(thanks)
   timeline.push(lextale_trials)
   timeline.push(lex_goodbye)
 
@@ -209,9 +233,12 @@ const lex_instructions = {
   timeline.push(socialNetworkSurvey)
   timeline.push(snq_goodbye)
 
+
   // Intelligibility Task
 
-  const list_choice = prompt("Choose List (1 or 2):");
+
+  const randomValue = Math.random() //will give you a number btwn 0 and 1
+  const list_choice = randomValue < 0.5 ? "1" : "2";
 
   let audioBasePath;
   let imageBasePath;
@@ -253,17 +280,18 @@ for (let i = 1; i <= 120; i++) {
     const instructions = {
       type: jsPsychInstructions,
       key_forward: ' ',
-      pages: [`'<div style="width: 60%; margin: auto;"> <p>Welcome to our experiment. Shortly, you will be presented with some images and auditory recordings.</p> 
+      pages: [`<div style="width: 60%; margin: auto;"> <p>Welcome to our experiment. Shortly, you will be presented with some images and auditory recordings.</p> 
         <p>Please focus on the auditory recordings carefully. Once the audio recording starts playing, start typing in the sentence that you are listening to. Try to be as accurate and as fast as possible.</p> 
-        <p>Press the <strong>SPACEBAR</strong> to start.</p> </div>'`]
+        <p>Press the <strong>SPACEBAR</strong> to start.</p> </div>`]
     };
     
     timeline.push(instructions);
     // Play audio and show image
+    shuffled = jsPsych.randomization.repeat(audio_files, 1);
     for (let i = 0; i < 120; i++) {
       timeline.push({
         type: jsPsychAudioKeyboardResponse,
-        stimulus: audio_files[i],
+        stimulus: shuffled[i],
         prompt: `<img src=${image_files[i%3]} style="max-height: 300px; display: block; margin: 20px auto;">`,
         choices: "NO_KEYS",
         trial_ends_after_audio: true
@@ -290,7 +318,7 @@ for (let i = 1; i <= 120; i++) {
                 '<p>The experiment is now complete.</p>',
       choices: 'NO_KEYS'
     };
-    // timeline.push(completion);
+    timeline.push(completion);
 
     const save_data = {
       type: jsPsychPipe,
