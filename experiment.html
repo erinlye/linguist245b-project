@@ -262,12 +262,10 @@ for (let i = 1; i <= 120; i++) {
       timeline.push({
         type: jsPsychAudioKeyboardResponse,
         stimulus: audio_files[i],
-        prompt: `<img src=${image_files[i]} style="max-height: 300px; display: block; margin: 20px auto;">`,
+        prompt: `<img src=${image_files[i%3]} style="max-height: 300px; display: block; margin: 20px auto;">`,
         choices: "NO_KEYS",
         trial_ends_after_audio: true
     });
-  }
-    for (let i = 0; i < 120; i++) {
       timeline.push({
       type: jsPsychSurveyText,
       preamble: `
