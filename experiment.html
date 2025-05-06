@@ -109,7 +109,8 @@ const lex_instructions = {
   // Finish screen
   const lex_goodbye = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: `<p>Thank you for completing the task!</p><p>Press the <strong>SPACEBAR</strong> to continue to the social network background questionnaire.</p>`
+    stimulus: `<p>Thank you for completing the task!</p><p>Press the <strong>SPACEBAR</strong> to continue to the social network background questionnaire.</p>`,
+    choices: [' ']
   };
 
 
@@ -270,7 +271,7 @@ for (let i = 1; i <= 120; i++) {
       type: jsPsychSurveyText,
       preamble: `
        <div style="text-align: center;">
-        <img src="${image_files[i]}" style="max-height: 300px;"><br><br>
+        <img src="${image_files[i%3]}" style="max-height: 300px;"><br><br>
         </div>
       `,
       questions: [{
