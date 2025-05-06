@@ -25,7 +25,7 @@
     // Initialize jsPsych
     const jsPsych = initJsPsych({
         show_progress_bar: true,
-        auto_update_progress_bar: true,
+        auto_update_progress_bar: false,
         override_safe_mode: true,
         on_finish: function() {
         // Displays data at the end of the experiment
@@ -52,8 +52,12 @@
         <p>Thank you for your participation in this study.</p>
         <p>Please complete all tasks to the best of your ability.</p>
         <p>You will be compensated for your time.</p>
-        <p>Press the <strong>SPACEBAR</strong> to begin.</p>,
-    `
+        <p>Press the <strong>SPACEBAR</strong> to begin.</p>
+    `,
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
     };
 
     timeline.push(intro_instructions);
@@ -87,7 +91,11 @@ const lex_instructions = {
         <p>Press the <strong>J</strong> key if the word <strong>is a real English word</strong>.</p>
         <p>Press the <strong>F</strong> key if the word <strong>is NOT a real English word</strong>.</p>
         <p>Press the <strong>SPACEBAR</strong> to begin.</p>
-    `
+    `,
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
 };
 
 // Trial template
@@ -97,7 +105,11 @@ const lex_instructions = {
         <p>This is a practice round.</p>
         <p><div style="font-size: 32px;">cat</div></p>
     `,
-    choices: ['f', 'j']
+    choices: ['f', 'j'],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
   }
 
   const thanks = {
@@ -106,7 +118,11 @@ const lex_instructions = {
         <p>Great! You should have pressed 'j'. Now the real task begins.</p>
         <p> Press the <strong>SPACEBAR</strong> to continue.</p>
     `,
-    choices: [' ']
+    choices: [' '],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
   }
 
   const lextale_trials = {
@@ -133,7 +149,11 @@ const lex_instructions = {
   const lex_goodbye = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `<p>Thank you for completing the task!</p><p>Press the <strong>SPACEBAR</strong> to continue to the social network background questionnaire.</p>`,
-    choices: [' ']
+    choices: [' '],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
   };
 
 
@@ -156,7 +176,11 @@ const lex_instructions = {
         <p>Important: When providing estimates for your exposure in a week, keep in mind that your habits may vary considerably depending on the day of the week (e.g., weekday vs. weekend).</p> 
         <p>Please be as accurate as possible and do not simply multiply your estimate for one day by 7.</p>
         <p>Press the <strong>SPACEBAR</strong> to begin.</p>
-    `
+    `,
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
   };
 
   // Survey Task
@@ -217,7 +241,11 @@ const lex_instructions = {
       <textarea name="network_info" rows="4" cols="50" required></textarea>
     </label><br>
   `,
-  button_label: "Continue"
+  button_label: "Continue",
+  on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
 };
 
   
@@ -226,7 +254,11 @@ const lex_instructions = {
   const snq_goodbye = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `<p>Thank you for completing the task!</p>
-    <p>Press the <strong>SPACEBAR</strong> to continue to the experiment task.</p>`
+    <p>Press the <strong>SPACEBAR</strong> to continue to the experiment task.</p>`,
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
   };
 
   timeline.push(snq_instructions)
@@ -282,7 +314,11 @@ for (let i = 1; i <= 120; i++) {
       key_forward: ' ',
       pages: [`<div style="width: 60%; margin: auto;"> <p>Welcome to our experiment. Shortly, you will be presented with some images and auditory recordings.</p> 
         <p>Please focus on the auditory recordings carefully. Once the audio recording starts playing, start typing in the sentence that you are listening to. Try to be as accurate and as fast as possible.</p> 
-        <p>Press the <strong>SPACEBAR</strong> to start.</p> </div>`]
+        <p>Press the <strong>SPACEBAR</strong> to start.</p> </div>`],
+      on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
     };
     
     timeline.push(instructions);
@@ -307,6 +343,10 @@ for (let i = 1; i <= 120; i++) {
       prompt: 'Type the sentence you heard and press ENTER to continue.'
     }],
     choices: ["Enter"],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
   });
 }
 
