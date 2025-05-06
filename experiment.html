@@ -40,6 +40,20 @@
     // We will store each trial in a list called timeline 
     const timeline = [];
 
+    // Experiment Intro
+
+    const intro_instructions = {
+    type: jsPsychHtmlKeyboardResponse,
+    choices: [' '],
+    stimulus: `
+        <p>Thank you for your participation in this study.</p>
+        <p>Please complete all tasks to the best of your ability.</p>
+        <p>You will be compensated for your time.</p>
+        <p>Press the <strong>SPACEBAR</strong> to begin.</p>
+    `
+    };
+
+    timeline.push(intro_instructions);
     // Language Background Questionnaires
     
     
@@ -186,7 +200,7 @@ const lex_instructions = {
   const snq_goodbye = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `<p>Thank you for completing the task!</p>
-    <p>Press the spacebar to continue to the experiment task.</p>`
+    <p>Press the <strong>SPACEBAR</spacebar> to continue to the experiment task.</p>`
   };
 
   timeline.push(snq_instructions)
@@ -195,24 +209,43 @@ const lex_instructions = {
 
   // Intelligibility Task
 
-    let list_choice = prompt("Choose List (1 or 2):");
-    let src = list_choice === "1" ? "List1" : "List2";
+  const list_choice = prompt("Choose List (1 or 2):");
 
-    let audio_files = [];
-    let image_files = [];
-    for (let i = 0; i < 120; i++) {
-      audio_files.push("assets/sounds/American/${i + 1}.wav");
-      audio_files.push("assets/sounds/British/${i + 1}.wav");
-      audio_files.push("assets/sounds/Indian/${i + 1}.wav");
-      image_files.push("assets/pictures/SouthAsian/southasianlady${i + 1}.png");
-      image_files.push("assets/pictures/White/whitelady${i + 1}.png");
-    }
+  let audioBasePath;
+  let imageBasePath;
+  let image_files = [];
+  let audio_files = [];
 
-    timeline.push({
+  if (list_choice === "1") {
+    audioBasePath = 'assets/list1/sounds/';
+    imageBasePath = 'assets/list1/pictures/';
+    image_files = [
+      'southasianlady1.png',
+      'whitelady1.png',
+      'whitelady3.png'
+    ].map(filename => imageBasePath + filename);
+} else if (list_choice === "2") {
+    audioBasePath = 'assets/list2/sounds/';
+    imageBasePath = 'assets/list2/pictures/';
+    image_files = [
+      'southasianlady2.png',
+      'whitelady2.png',
+      'southasianlady3.png'
+  ].map(filename => imageBasePath + filename);
+} else {
+  alert("Invalid list choice. Please refresh and enter 1 or 2.");
+}
+
+for (let i = 1; i <= 120; i++) {
+      audio_files.push(`${audioBasePath}${i}.wav`);
+}
+
+  // Preload everything
+  timeline.push({
     type: jsPsychPreload,
     images: image_files,
     audio: audio_files
-    });
+  });
    
     // Instructions
     const instructions = {
@@ -225,26 +258,29 @@ const lex_instructions = {
     
     timeline.push(instructions);
     // Play audio and show image
-    timeline.push({
-      type: jsPsychAudioKeyboardResponse,
-      stimulus: "assets/sounds/American/1.wav",
-      prompt: `<img src="assets/pictures/White/whitelady1.png" style="max-height: 300px; display: block; margin: 20px auto;">`,
-      choices: "NO_KEYS",
-      trial_ends_after_audio: true
+    for (let i = 0; i < 120; i++) {
+      timeline.push({
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: audio_files[i],
+        prompt: `<img src=${image_files[i]} style="max-height: 300px; display: block; margin: 20px auto;">`,
+        choices: "NO_KEYS",
+        trial_ends_after_audio: true
     });
-
-    timeline.push({
-    type: jsPsychSurveyText,
-    preamble: `
-      <div style="text-align: center;">
-        <img src="assets/pictures/White/whitelady1.png" style="max-height: 300px;"><br><br>
-      </div>
-    `,
-    questions: [{
+  }
+    for (let i = 0; i < 120; i++) {
+      timeline.push({
+      type: jsPsychSurveyText,
+      preamble: `
+       <div style="text-align: center;">
+        <img src="${image_files[i]}" style="max-height: 300px;"><br><br>
+        </div>
+      `,
+      questions: [{
       prompt: 'Type the sentence you heard and press ENTER to continue.'
     }],
     choices: ["Enter"],
   });
+}
 
   
     // Nice to tell participants they are done, thank you, etc
