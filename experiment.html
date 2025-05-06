@@ -200,7 +200,7 @@ const lex_instructions = {
   const snq_goodbye = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: `<p>Thank you for completing the task!</p>
-    <p>Press the <strong>SPACEBAR</spacebar> to continue to the experiment task.</p>`
+    <p>Press the <strong>SPACEBAR</strong> to continue to the experiment task.</p>`
   };
 
   timeline.push(snq_instructions)
@@ -216,7 +216,7 @@ const lex_instructions = {
   let image_files = [];
   let audio_files = [];
 
-  if (list_choice === "1") {
+  if (list_choice === '1') {
     audioBasePath = 'assets/list1/sounds/';
     imageBasePath = 'assets/list1/pictures/';
     image_files = [
@@ -224,7 +224,7 @@ const lex_instructions = {
       'whitelady1.png',
       'whitelady3.png'
     ].map(filename => imageBasePath + filename);
-} else if (list_choice === "2") {
+} else if (list_choice === '2') {
     audioBasePath = 'assets/list2/sounds/';
     imageBasePath = 'assets/list2/pictures/';
     image_files = [
