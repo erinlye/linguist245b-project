@@ -368,7 +368,8 @@ for (let i = 1; i <= 120; i++) {
       filename: filename,
       data_string: ()=>jsPsych.data.get().csv()
     };
-    // timeline.push(save_data)
+    
+    timeline.push(save_data)
 
     // This line actually runs the experiment 
     jsPsych.run(timeline);
