@@ -122,70 +122,70 @@ const lex_instructions = {
     }
 };
 
-// // Trial template
-//   const practice_trial = {
-//     type: jsPsychHtmlKeyboardResponse,
-//     stimulus: `
-//         <p>This is a practice round.</p>
-//         <p><div style="font-size: 32px;">cat</div></p>
-//     `,
-//     choices: ['f', 'j'],
-//     on_finish: function(data) {
-//       const current_progress = jsPsych.getProgressBarCompleted();
-//       jsPsych.setProgressBar(current_progress + lex_increment);
-//     }
-//   }
+// Trial template
+  const practice_trial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `
+        <p>This is a practice round.</p>
+        <p><div style="font-size: 32px;">cat</div></p>
+    `,
+    choices: ['f', 'j'],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
+  }
 
-//   const thanks = {
-//     type: jsPsychHtmlKeyboardResponse,
-//     stimulus: `
-//         <p>Great! You should have pressed 'j'. Now the real task begins.</p>
-//         <p> Press the <strong>SPACEBAR</strong> to continue.</p>
-//     `,
-//     choices: [' '],
-//     on_finish: function(data) {
-//       const current_progress = jsPsych.getProgressBarCompleted();
-//       jsPsych.setProgressBar(current_progress + lex_increment);
-//     }
-//   }
+  const thanks = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `
+        <p>Great! You should have pressed 'j'. Now the real task begins.</p>
+        <p> Press the <strong>SPACEBAR</strong> to continue.</p>
+    `,
+    choices: [' '],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
+  }
 
-//   const lextale_trials = {
-//     timeline: [
-//         {
-//             type: jsPsychHtmlKeyboardResponse,
-//             stimulus: function() {
-//                 return `<div style="font-size: 32px;">${jsPsych.timelineVariable('stimulus')}</div>`;
-//             },
-//             choices: ['f', 'j'],
-//             data: jsPsych.timelineVariable('data'),
-//             on_finish: function(data) {
-//                 data.correct = data.response === data.correct_response;
-//                 const current_progress = jsPsych.getProgressBarCompleted();
-//                 jsPsych.setProgressBar(current_progress + lex_increment);
-//             }
-//         }
-//     ],
-//     timeline_variables: lextale_stimuli,
-//     randomize_order: true
-//   };
+  const lextale_trials = {
+    timeline: [
+        {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: function() {
+                return `<div style="font-size: 32px;">${jsPsych.timelineVariable('stimulus')}</div>`;
+            },
+            choices: ['f', 'j'],
+            data: jsPsych.timelineVariable('data'),
+            on_finish: function(data) {
+                data.correct = data.response === data.correct_response;
+                const current_progress = jsPsych.getProgressBarCompleted();
+                jsPsych.setProgressBar(current_progress + lex_increment);
+            }
+        }
+    ],
+    timeline_variables: lextale_stimuli,
+    randomize_order: true
+  };
 
-//   // Finish screen
-//   const lex_goodbye = {
-//     type: jsPsychHtmlKeyboardResponse,
-//     stimulus: `<p>Thank you for completing the task!</p><p>Press the <strong>SPACEBAR</strong> to continue to the social network background questionnaire.</p>`,
-//     choices: [' '],
-//     on_finish: function(data) {
-//       const current_progress = jsPsych.getProgressBarCompleted();
-//       jsPsych.setProgressBar(current_progress + lex_increment);
-//     }
-//   };
+  // Finish screen
+  const lex_goodbye = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: `<p>Thank you for completing the task!</p><p>Press the <strong>SPACEBAR</strong> to continue to the social network background questionnaire.</p>`,
+    choices: [' '],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
+  };
 
 
   timeline.push(lex_instructions)
-//   timeline.push(practice_trial)
-//   timeline.push(thanks)
-//   timeline.push(lextale_trials)
-//   timeline.push(lex_goodbye)
+  timeline.push(practice_trial)
+  timeline.push(thanks)
+  timeline.push(lextale_trials)
+  timeline.push(lex_goodbye)
 
 //   // Social Network Questionnaire
 
@@ -290,92 +290,92 @@ const lex_instructions = {
   timeline.push(snq_goodbye)
 
 
-//   // Intelligibility Task
+  // Intelligibility Task
 
 
-//   const randomValue = Math.random() //will give you a number btwn 0 and 1
-//   const list_choice = randomValue < 0.5 ? "1" : "2";
+  const randomValue = Math.random() //will give you a number btwn 0 and 1
+  const list_choice = randomValue < 0.5 ? "1" : "2";
 
-//   let audioBasePath;
-//   let imageBasePath;
-//   let image_files = [];
-//   let audio_files = [];
+  let audioBasePath;
+  let imageBasePath;
+  let image_files = [];
+  let audio_files = [];
 
-//   if (list_choice === '1') {
-//     audioBasePath = 'assets/list1/sounds/';
-//     imageBasePath = 'assets/list1/pictures/';
-//     image_files = [
-//       'southasianlady1.png',
-//       'whitelady1.png',
-//       'whitelady3.png'
-//     ].map(filename => imageBasePath + filename);
-// } else if (list_choice === '2') {
-//     audioBasePath = 'assets/list2/sounds/';
-//     imageBasePath = 'assets/list2/pictures/';
-//     image_files = [
-//       'southasianlady2.png',
-//       'whitelady2.png',
-//       'southasianlady3.png'
-//   ].map(filename => imageBasePath + filename);
-// } else {
-//   alert("Invalid list choice. Please refresh and enter 1 or 2.");
-// }
+  if (list_choice === '1') {
+    audioBasePath = 'assets/list1/sounds/';
+    imageBasePath = 'assets/list1/pictures/';
+    image_files = [
+      'southasianlady1.png',
+      'whitelady1.png',
+      'whitelady3.png'
+    ].map(filename => imageBasePath + filename);
+} else if (list_choice === '2') {
+    audioBasePath = 'assets/list2/sounds/';
+    imageBasePath = 'assets/list2/pictures/';
+    image_files = [
+      'southasianlady2.png',
+      'whitelady2.png',
+      'southasianlady3.png'
+  ].map(filename => imageBasePath + filename);
+} else {
+  alert("Invalid list choice. Please refresh and enter 1 or 2.");
+}
 
-// for (let i = 1; i <= 120; i++) {
-//       audio_files.push(`${audioBasePath}${i}.wav`);
-// }
+for (let i = 1; i <= 120; i++) {
+      audio_files.push(`${audioBasePath}${i}.wav`);
+}
 
-//   // Preload everything
-//   timeline.push({
-//     type: jsPsychPreload,
-//     images: image_files,
-//     audio: audio_files
-//   });
+  // Preload everything
+  timeline.push({
+    type: jsPsychPreload,
+    images: image_files,
+    audio: audio_files
+  });
    
-//     // Instructions
-//     const instructions = {
-//       type: jsPsychInstructions,
-//       key_forward: ' ',
-//       pages: [`<div style="width: 60%; margin: auto;"> <p>Welcome to our experiment. Shortly, you will be presented with some images and auditory recordings.</p> 
-//         <p>Please focus on the auditory recordings carefully. Once the audio recording starts playing, start typing in the sentence that you are listening to.</p>
-//         <p>Try to be as accurate and as fast as possible.</p> 
-//         <p>If you cannot understand the full sentence, please do your best and type all the words you did here clearly.</p>
-//         <p>Press the <strong>SPACEBAR</strong> to start.</p> </div>`],
-//       on_finish: function(data) {
-//       const current_progress = jsPsych.getProgressBarCompleted();
-//       jsPsych.setProgressBar(current_progress + lex_increment);
-//     }
-//     };
+    // Instructions
+    const instructions = {
+      type: jsPsychInstructions,
+      key_forward: ' ',
+      pages: [`<div style="width: 60%; margin: auto;"> <p>Welcome to our experiment. Shortly, you will be presented with some images and auditory recordings.</p> 
+        <p>Please focus on the auditory recordings carefully. Once the audio recording starts playing, start typing in the sentence that you are listening to.</p>
+        <p>Try to be as accurate and as fast as possible.</p> 
+        <p>If you cannot understand the full sentence, please do your best and type all the words you did here clearly.</p>
+        <p>Press the <strong>SPACEBAR</strong> to start.</p> </div>`],
+      on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
+    };
     
-//     timeline.push(instructions);
-//     // Play audio and show image
-//     shuffled = jsPsych.randomization.repeat(audio_files, 1);
-//     for (let i = 0; i < 120; i++) {
-//       const randomIndex = Math.floor(Math.random() * 3);
-//       timeline.push({
-//         type: jsPsychAudioKeyboardResponse,
-//         stimulus: shuffled[i],
-//         prompt: `<img src=${image_files[randomIndex]} style="max-height: 300px; display: block; margin: 20px auto;">`,
-//         choices: "NO_KEYS",
-//         trial_ends_after_audio: true
-//     });
-//       timeline.push({
-//       type: jsPsychSurveyText,
-//       preamble: `
-//        <div style="text-align: center;">
-//         <img src="${image_files[i%3]}" style="max-height: 300px;"><br><br>
-//         </div>
-//       `,
-//       questions: [{
-//       prompt: 'Type the sentence you heard and press ENTER to continue.'
-//     }],
-//     choices: ["Enter"],
-//     on_finish: function(data) {
-//       const current_progress = jsPsych.getProgressBarCompleted();
-//       jsPsych.setProgressBar(current_progress + lex_increment);
-//     }
-//   });
-// }
+    timeline.push(instructions);
+    // Play audio and show image
+    shuffled = jsPsych.randomization.repeat(audio_files, 1);
+    for (let i = 0; i < 120; i++) {
+      const randomIndex = Math.floor(Math.random() * 3);
+      timeline.push({
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: shuffled[i],
+        prompt: `<img src=${image_files[randomIndex]} style="max-height: 300px; display: block; margin: 20px auto;">`,
+        choices: "NO_KEYS",
+        trial_ends_after_audio: true
+    });
+      timeline.push({
+      type: jsPsychSurveyText,
+      preamble: `
+       <div style="text-align: center;">
+        <img src="${image_files[i%3]}" style="max-height: 300px;"><br><br>
+        </div>
+      `,
+      questions: [{
+      prompt: 'Type the sentence you heard and press ENTER to continue.'
+    }],
+    choices: ["Enter"],
+    on_finish: function(data) {
+      const current_progress = jsPsych.getProgressBarCompleted();
+      jsPsych.setProgressBar(current_progress + lex_increment);
+    }
+  });
+}
 
   
     // Nice to tell participants they are done, thank you, etc
