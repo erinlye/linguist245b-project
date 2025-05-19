@@ -357,10 +357,11 @@ for (let i = 1; i <= 120; i++) {
         type: jsPsychAudioKeyboardResponse,
         stimulus: shuffled[i],
         prompt: `<img src=${image_files[randomIndex]} style="max-height: 300px; display: block; margin: 20px auto;">`,
+        data: {
+          image_stim: image_files[randomIndex]
+        },
         choices: "NO_KEYS",
         trial_ends_after_audio: true,
-        on_finish: function(data) {
-        jsPsych.data.addProperties({prompt: data.prompt})}
     });
       timeline.push({
       type: jsPsychSurveyText,
@@ -375,8 +376,7 @@ for (let i = 1; i <= 120; i++) {
     choices: ["Enter"],
     on_finish: function(data) {
       const current_progress = jsPsych.getProgressBarCompleted();
-      jsPsych.setProgressBar(current_progress + lex_increment);
-      jsPsych.data.addProperties({preamble: data.preamble})
+      jsPsych.setProgressBar(current_progress + lex_increment)
     }
   });
 }
