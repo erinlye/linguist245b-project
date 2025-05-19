@@ -360,7 +360,7 @@ for (let i = 1; i <= 120; i++) {
         choices: "NO_KEYS",
         trial_ends_after_audio: true,
         on_finish: function(data) {
-        jsPsych.data.addProperties(data.prompt)}
+        jsPsych.data.addProperties({prompt: data.prompt})}
     });
       timeline.push({
       type: jsPsychSurveyText,
@@ -376,7 +376,7 @@ for (let i = 1; i <= 120; i++) {
     on_finish: function(data) {
       const current_progress = jsPsych.getProgressBarCompleted();
       jsPsych.setProgressBar(current_progress + lex_increment);
-      jsPsych.data.addProperties(data.preamble)
+      jsPsych.data.addProperties({preamble: data.preamble})
     }
   });
 }
