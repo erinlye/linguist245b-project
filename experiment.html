@@ -360,7 +360,7 @@ for (let i = 1; i <= 120; i++) {
         choices: "NO_KEYS",
         trial_ends_after_audio: true,
         on_finish: function(data) {
-        jsPsych.data.addProperties(prompt)}
+        jsPsych.data.addProperties(data.prompt)}
     });
       timeline.push({
       type: jsPsychSurveyText,
@@ -371,12 +371,12 @@ for (let i = 1; i <= 120; i++) {
       `,
       questions: [{
       prompt: 'Type the sentence you heard and press ENTER to continue.'
-    }],
+      }],
     choices: ["Enter"],
     on_finish: function(data) {
       const current_progress = jsPsych.getProgressBarCompleted();
       jsPsych.setProgressBar(current_progress + lex_increment);
-      jsPsych.data.addProperties(preamble)
+      jsPsych.data.addProperties(data.preamble)
     }
   });
 }
