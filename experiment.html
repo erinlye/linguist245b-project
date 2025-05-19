@@ -92,15 +92,15 @@
 //     // LexTALE Language Questionnaire
 
 //     // Load stimuli
-//   const lextale_stimuli = lex_dict['en'].map(stim => {
-//     return {
-//         stimulus: stim.word,
-//         data: {
-//             correct_response: stim.wstatus === 1 ? 'j' : 'f',
-//             is_real_word: stim.wstatus === 1
-//         }
-//     };
-// });
+  const lextale_stimuli = lex_dict['en'].map(stim => {
+    return {
+         stimulus: stim.word,
+      data: {
+         correct_response: stim.wstatus === 1 ? 'j' : 'f',
+        is_real_word: stim.wstatus === 1
+     }
+    };
+ });
 
 // // Shuffle stimuli (optional but common)
 // jsPsych.randomization.shuffle(lextale_stimuli);
