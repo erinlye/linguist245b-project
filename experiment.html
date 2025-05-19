@@ -104,7 +104,7 @@
  });
 
 // // Shuffle stimuli (optional but common)
-// jsPsych.randomization.shuffle(lextale_stimuli);
+jsPsych.randomization.shuffle(lextale_stimuli);
 
 // LexTALE instructions
 const lex_instructions = {
@@ -182,10 +182,10 @@ const lex_instructions = {
   };
 
 
-  // timeline.push(lex_instructions)
-  // timeline.push(practice_trial)
-  // timeline.push(thanks)
-  // timeline.push(lextale_trials)
+  timeline.push(lex_instructions)
+  timeline.push(practice_trial)
+  timeline.push(thanks)
+  timeline.push(lextale_trials)
   timeline.push(lex_goodbye)
 
 //   // Social Network Questionnaire
@@ -286,9 +286,9 @@ const lex_instructions = {
     }
   };
 
-  // timeline.push(snq_instructions)
-  // timeline.push(socialNetworkSurvey)
-  // timeline.push(snq_goodbye)
+  timeline.push(snq_instructions)
+  timeline.push(socialNetworkSurvey)
+  timeline.push(snq_goodbye)
 
 
   // Intelligibility Task
@@ -351,7 +351,7 @@ for (let i = 1; i <= 120; i++) {
     timeline.push(instructions);
     // Play audio and show image
     shuffled = jsPsych.randomization.repeat(audio_files, 1);
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 2; i++) {
       const randomIndex = Math.floor(Math.random() * 3);
       timeline.push({
         type: jsPsychAudioKeyboardResponse,
