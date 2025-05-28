@@ -34,46 +34,36 @@ For audio stimuli, the original recordings used in the Kutlu study were not avai
 
 ### Procedure	
 
-"Participants completed a language background questionnaire (Li et al. 2020), the LexTale
-English proficiency task (Lemhöfer & Broersma 2012), and the revised version of Lev-Ari’s
-(2017) social network questionnaire (see OSF page). They then completed the experimental
-tasks, namely the intelligibility task followed by the accentedness judgment task. All testing was
-completed in a quiet room. The experiment took 1.5 hours to complete, and participants received
-3 class credits upon completion of the experiment. The accentedness judgment and the intelligibility tasks were administered via PsychoPy (Peirce 2017). First, an image was shown on the computer screen for 250 ms. Then, the auditory stimulus played. The PsychoPy script was written in such a way that participants were not allowed to start typing nor judge the sentences in either experiment before the stimulus played
-fully. Participants were instructed regarding this information and completed a practice trial with
-the research assistant that consisted of three sentences which were excluded from the analysis. For the intelligibility task, participants were instructed to look at a speaker’s face on the
-screen, listen to the speech in noise carefully, and type the sentences as accurately as possible.
+"Participants completed a language background questionnaire (Li et al. 2020), the LexTale English proficiency task (Lemhöfer & Broersma 2012), and the revised version of Lev-Ari’s (2017) social network questionnaire (see OSF page). They then completed the experimental
+tasks, namely the intelligibility task followed by the accentedness judgment task. All testing was completed in a quiet room. The experiment took 1.5 hours to complete, and participants received 3 class credits upon completion of the experiment. The accentedness judgment and the intelligibility tasks were administered via PsychoPy (Peirce 2017). First, an image was shown on the computer screen for 250 ms. Then, the auditory stimulus played. The PsychoPy script was written in such a way that participants were not allowed to start typing nor judge the sentences in either experiment before the stimulus played fully. Participants were instructed regarding this information and completed a practice trial with the research assistant that consisted of three sentences which were excluded from the analysis. For the intelligibility task, participants were instructed to look at a speaker’s face on the screen, listen to the speech in noise carefully, and type the sentences as accurately as possible.
 To facilitate typing, participants were advised to avoid punctuation or capital letters."
 
-I will be following this procedure closely, with the exception that my experiment only include the intelligibility task and will be run in JsPsych, not PsychoPy. It will also be administered completely online through Prolific. Participants will be rewarded monetarily rather than through class credit. They will also be debriefed at the end of the study.
+I will be following this procedure closely, with the exception that my experiment only includes the intelligibility task and will be run in JsPsych, not PsychoPy. It will also be administered completely online through Prolific. Participants will be rewarded monetarily rather than through class credit. They will also be debriefed at the end of the study.
 
 ### Analysis Plan
 
-"Depending on participants’ answers to the social network questionnaire, those who reported
-having more than one tie with someone in their close network (i.e., someone that they interact 
-11 with almost every day) who identifies with a racial or ethnic background outside of their own
-racial and ethnic background were grouped in the MoreDiverse category. Those with ties only to
-individuals within their own racial and ethnic background were grouped in the LessDiverse
-(LessDiverse n= 24, MoreDiverse n=34)."  
+"Depending on participants’ answers to the social network questionnaire, those who reported having more than one tie with someone in their close network (i.e., someone that they interact with almost every day) who identifies with a racial or ethnic background outside of their own
+racial and ethnic background were grouped in the MoreDiverse category. Those with ties only to individuals within their own racial and ethnic background were grouped in the LessDiverse."  
 
-"Intelligibility scores were calculated through transcription accuracy. For each sentence, content words were selected and their transcription accuracy was calculated by means of 1s for correct content words and 0s for incorrect words (Porretta et al. 2016). Typos that were close to the content words were counted as 1s (e.g., yelow instead of yellow). To investigate proportions as a function of different race, English variety, and different social network diversity, we constructed a linear mixed-effects model using the lme4 package (Bates et al. 2018) in R (R version 3.6.1; R Core Team, 2019), conducted follow-up tests with lsmeans package (Lenth 2016), and corrected pairwise comparisons with the Bonferroni correction. Proportions were entered as the continuous dependent variable. As fixed effects, we included (1) Helmert-coded Variety (American English vs. British English), and (Indian English vs American + British English), (2) treatment coded Face (South Asian (a), white (b)), (3) treatment coded Diverse (LessDiverse (a), MoreDiverse(b)). Random effects were by-subject and by-item random intercepts. Random slopes were eliminated as the model did not converge." Participants who fail to transcribe more than 50% of the sentence stimuli will be excluded from the analysis.
+"Intelligibility scores were calculated through transcription accuracy. For each sentence, content words were selected and their transcription accuracy was calculated by means of 1s for correct content words and 0s for incorrect words (Porretta et al. 2016). Typos that were close to the content words were counted as 1s (e.g., yelow instead of yellow). To investigate proportions as a function of different race, English variety, and different social network diversity, we constructed a linear mixed-effects model using the lme4 package (Bates et al. 2018) in R (R version 3.6.1; R Core Team, 2019), conducted follow-up tests with lsmeans package (Lenth 2016), and corrected pairwise comparisons with the Bonferroni correction. Proportions were entered as the continuous dependent variable. As fixed effects, we included (1) Helmert-coded Variety (American English vs. British English), and (Indian English vs American + British English), (2) treatment coded Face (South Asian (a), white (b)), (3) treatment coded Diverse (LessDiverse (a), MoreDiverse(b)). Random effects were by-subject and by-item random intercepts. Random slopes were eliminated as the model did not converge." Participants who fail to transcribe more than 50% of the sentence stimuli will be excluded from the analysis."
 
-**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+**Clarify key analysis of interest here**  
 The key analysis will be a mixed-effects model measuring comparisons of transcription accuracy for South Asian faces compared to white faces. At this point I have not planned any additional analyses beyond the methods described in the study.
 
 ### Differences from Original Study
 
-While the goal is to minimize differences from the original study, mine will primarily differ in that different speakers were chosen for the auditory stimuli, since the original speaker recordings were not available. Additionally, the original experiment was administered in person on a college campus, whereas my experiment will be run completely online. My sample will also likely be smaller than the original study's based on our power analysis.
+While the goal is to minimize differences from the original study, mine will primarily differ in that different speakers were chosen for the auditory stimuli, since the original speaker recordings were not available. Additionally, the original experiment was administered in person on a college campus, whereas my experiment will be run completely online. My sample was also significantly smaller than the original study's based on our power analysis.
 
 ### Methods Addendum (Post Data Collection)
 
 You can comment this section out prior to final report with data collection.
 
 #### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+The sample included 14 users from Prolific; originally, 15 samples were collected, but one was excluded for insufficient completion of the task. Participants were sourced from the UK and the US, and I excluded users who spoke Hindi. The average age was 35.6.
 
 #### Differences from pre-data collection methods plan
   Any differences from what was described as the original plan, or “none”.
+In my pre-data collection plans, I had mentioned excluding participants with extensive exposure to Indian English and British English, and had also aimed for participants from a similar age range to the original study. However, I ended up not screening for age. This admittedly was not done on purpose — since the intelligibility score finding was did not mention age as a significant finding, I did not remember to screen Prolific participants for these factors. Hopefully this allows us to analyze the generalizability of Kutlu's findings, although any resulting errors I take full responsibility for.
 
 
 ## Results
@@ -85,25 +75,101 @@ Data preparation following the analysis plan.
 	
 ```{r include=F}
 ### Data Preparation
-
 #### Load Relevant Libraries and Functions
-
+library(stringr)
+library (stringdist)
+library(dplyr)
+library (readr)
 #### Import data
+df <- read_csv("ling245b_data.csv")
 
-#### Data exclusion / filtering
+calculate_similarity <- function(actual, response, max_dist = 1) {
+  # Clean and split into words
+  clean_text <- function(text) {
+    text %>%
+      tolower() %>%
+      str_remove_all("[^a-zA-Z ]") %>%  # Keep letters and spaces
+      str_squish() %>%
+      str_split(" +") %>%
+      unlist()
+  }
+  
+  actual_words <- clean_text(actual)
+  response_words <- clean_text(response)
+  
+  if(length(actual_words) == 0) return(NA_real_)
+  
+  # Track matches while avoiding double-counting
+  matches <- 0
+  remaining_response <- response_words
+ 
+    for(word in actual_words) {
+    if(length(remaining_response) == 0) break
+    
+    distances <- stringdist::stringdist(word, remaining_response, method = "lv")
+    
+    # Handle empty distances and NA values
+    if(length(distances) == 0 || all(is.na(distances))) next
+    
+    min_dist <- min(distances, na.rm = TRUE)
+    
+    # Add validity check for min_dist
+    if(!is.na(min_dist) && min_dist <= max_dist) {
+      matches <- matches + 1
+      remaining_response <- remaining_response[-which.min(distances)]
+    }
+  }
+   # Return both strict accuracy and similarity percentage
+  list(
+    accuracy = matches / length(actual_words),
+    similarity = matches / max(length(actual_words), length(response_words))
+  )
+  }
+  
 
-#### Prepare data for analysis - create columns etc.
+# Apply to dataframe
+df <- df %>%
+  mutate(
+    actual = as.character(actual_sentence),
+    response = as.character(subject_response)
+  ) %>%
+  rowwise() %>%
+  mutate(
+    accuracy = calculate_similarity(actual, response)$accuracy
+  ) %>%
+  ungroup()
+df$subject_response_unfixed <- NULL
+
+head(df)
 ```
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.  
+The analyses as specified in the analysis plan. 
 
+```{r include=FALSE, eval=TRUE}
+
+# Import all libraries
+library("knitr")
+library("GGally")
+library("janitor")
+library("tidyverse")
+library(lme4)
+
+# Use a nicer theme
+theme_set(theme_classic())
+
+df$stimulus_face <- relevel(factor(df$stimulus_face), ref="south asian")
+
+m1 <- lm(accuracy ~ diverse * stimulus_voice * stimulus_face, 
+           REML = F,
+           data=df)
+
+summary(m1)
+
+```
+ 
 *Side-by-side graph with original graph is ideal here*
-
-### Exploratory analyses
-
-Any follow-up analyses desired (not required).  
 
 ## Discussion
 
