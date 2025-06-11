@@ -86,6 +86,7 @@ library("janitor")
 library("tidyverse")
 library(lme4)
 library(ggplot2)
+library("lmerTest")
 #### Import data
 df <- read_csv("ling245b_data.csv")
 
@@ -188,34 +189,66 @@ anova(complex_2, m2)
 ![Original Figure](original_figure.png){width=2000}
 
 ```{r include=FALSE, eval=TRUE}
-plot <- ggplot(data=df, aes(x=face_voice, y= accuracy, fill=face_voice)) + geom_violin(trim = FALSE, alpha = 0.5) +
-  geom_boxplot(width = 0.2, outlier.shape = NA, color = "white") +
-  geom_jitter(width = 0.3, size = 1, alpha = 0.2, color = "white") +
+
+df_summary <- df %>%
+  group_by(face_voice, diverse) %>%
+  summarise(mean_accuracy = mean(accuracy, na.rm = TRUE)) %>%
+  ungroup()
+
+plot <- ggplot(data = df, aes(x = face_voice, y = accuracy, fill = face_voice)) +
+  geom_point(color = "lightblue") +
+  geom_jitter(width = 0.3, size = 1, alpha = 0.2, color = "lightblue") +
   facet_wrap(~diverse, labeller = as_labeller(
     c("less" = "Racially Less Diverse", 
       "more" = "Racially More Diverse"))) +
+  geom_segment(
+    data = df_summary,
+    aes(
+      x = as.numeric(as.factor(face_voice)) - 0.4, 
+      xend = as.numeric(as.factor(face_voice)) + 0.4,
+      y = mean_accuracy,
+      yend = mean_accuracy
+    ),
+    color = "blue",
+    linewidth = 1
+  ) +
   theme_minimal() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     legend.position = "none"
   ) +
-  labs(x = NULL, y = "proportion") + scale_y_continuous(breaks = seq(0, 1.0, by = .1))
+  labs(x = NULL, y = "proportion") +
+  scale_y_continuous(breaks = seq(0, 1.0, by = .1))
 
 show(plot)
-  
-
 ```
 ```{r, include=FALSE, eval=TRUE}
+
+df_summary_no_diverse <- df %>%
+  group_by(face_voice) %>%
+  summarise(mean_accuracy = mean(accuracy, na.rm = TRUE))
+
 # Looking at proportions ungrouped by social network diversity to get a better sense of numbers
- p_ungrouped <- ggplot(data=df, aes(x=face_voice, y= accuracy, fill=face_voice)) + geom_violin(trim = FALSE, alpha = 0.5) +
-  geom_boxplot(width = 0.2, outlier.shape = NA, color = "white") +
-  geom_jitter(width = 0.3, size = 1, alpha = 0.2, color = "white") +
+ p_ungrouped <- ggplot(data = df, aes(x = face_voice, y = accuracy, fill = face_voice)) +
+  geom_point(color = "blue") +
+  geom_jitter(width = 0.3, size = 1, alpha = 0.2, color = "lightblue") +
+  geom_segment(
+    data = df_summary_no_diverse,
+    aes(
+      x = as.numeric(as.factor(face_voice)) - 0.4,  
+      xend = as.numeric(as.factor(face_voice)) + 0.4,
+      y = mean_accuracy
+    ),
+    color = "blue",
+    linewidth = 1
+  ) +
   theme_minimal() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1),
     legend.position = "none"
   ) +
-  labs(x = NULL, y = "proportion") + scale_y_continuous(breaks = seq(0, 1.0, by = .1)) + ggtitle("Proportions Ungrouped by Network Diversity")
+  labs(x = NULL, y = "proportion") +
+  scale_y_continuous(breaks = seq(0, 1.0, by = .1)) + ggtitle("Proportions Ungrouped by Network Diversity")
 
 show(p_ungrouped)
 ```
@@ -223,13 +256,13 @@ show(p_ungrouped)
 
 ### Summary of Replication Attempt
 
-The present study aimed to replicate the intelligibility task portion of the Kutlu et al. (2022) study, which found that regardless of the diversity of one's social network that South Asian faces resulted in less transcription accuracy across varieties of English. Ultimately, our findings fail to replicate those produced in the original study. Running a linear mixed effects model accounting for individual subjects as a random effect, we find no statistically significant differences in transcription accuracy regardless of social network diversity, the race of the faces shown, or the variety of English participants heard.
+The present study aimed to replicate the intelligibility task portion of the Kutlu et al. (2022) study, which found that regardless of the diversity of one's social network that South Asian faces resulted in less transcription accuracy across varieties of English. Our findings present a partial replication of the original findings. Running a linear mixed effects model accounting for individual subjects as a random effect, we find no statistically significant differences in transcription accuracy regardless of social network diversity or the race of the faces shown, but we do find that both the British variety of English and the Indian variety were significantly less intelligible than the American variety.
 
 ### Commentary
-In addition to the linear mixed effects model used by Kutlu et al., I also explored likelihood ratio comparisons of a simple model that only accounts for stimulus voice (variety of English), a model that accounts for voice and face shown, and the full complex model including voice, face, and diversity of social network. After running the ANOVA comparison of the simple model and the intermediate model, there was a significant difference in fixed effects, whereas the ANOVA comparing the intermediate model to the full complex model had no significant difference. From this analysis, we concur that there were no significant differences in transcription accuracy based upon which face was shown to the participant, which fails to replicate the original finding. 
+In addition to the linear mixed effects model used by Kutlu et al., I also explored likelihood ratio comparisons of a simple model that only accounts for stimulus voice (variety of English), a model that accounts for voice and face shown, and the full complex model including voice, face, and diversity of social network. After running the ANOVA comparison of the simple model and the intermediate model, there was a significant difference in fixed effects, whereas the ANOVA comparing the intermediate model to the full complex model had no significant difference. From this analysis, we concur that there were no significant differences in transcription accuracy based upon which face was shown to the participant. Still the finding that the Indian and British varieties of English were significantly less intelligible suggest that is some effect from the experiment on speech perception, albeit not a full replication of the original. 
 
 As mentioned in the analysis plan, there are a couple of key differences in our replication study compared to the original study: ours was administered online, and with an older participant pool. We also used different stimuli from the SpeechBox corpus, and it is possible that our manipulation of adding 4dB noise was not exactly what the authors had intended, since we did not have a reference stimulus to compare ours to.
 
-We may also consider the fact that since the original reported a high-powered t-value, our power analysis reported that a significantly smaller sample was needed to replicate its results. This may be a case of winner's curse — perhaps we would have observed significant effects with a larger sample, but the original study got so lucky with effects that the resulting power analysis ended up being too weak. That being said, the present study had 14 participants, six more than the suggested eight from the power analysis.
+We may also consider the fact that since the original reported a high-powered t-value, our power analysis reported that a significantly smaller sample was needed to replicate its results. This may be a case of winner's curse — perhaps we would have observed significant effects with a larger sample, but the original study got so lucky with effects that the resulting power analysis ended up being too weak to capture the effects of race and social network diversity. That being said, the present study had 14 participants, six more than the suggested eight from the power analysis.
 
 In terms of the analysis itself, a question I have regarding the original study pertains to the categorization of social network diversity into either "more" or "less." Perhaps a more descriptive analysis would have had more fine-grained categorical variables, or illustrated the network as continuous compared to discrete/binary. It may be important to consider whether the experimental design of the study, and its corresponding analysis, align with the research question of how social network diversity impact speech perception and intelligibility. Further research may be necessary to draw conclusions on the results put forth by Kutlu et al., although the current study hopes to prompt deeper inquiry in the field of speech perception and psycholinguistics.
